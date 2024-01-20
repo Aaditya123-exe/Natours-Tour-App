@@ -1,1 +1,3 @@
-# Natours-Tour Management Web Application
+# Natours-Application
+
+Built using modern technologies: node.js,express,mongoDB,mongoose

@@ -24,8 +24,8 @@ exports.getALLTours = async (req, res) => {
     //////1.B ADVANCED FILTERING
     let queryStr = JSON.stringify(queryObj);
     queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
-    console.log(req.query, queryObj);
-    console.log(queryStr);
+    // console.log(req.query, queryObj);
+    // console.log(queryStr);
 
     //////BUILDING THE QUERY
     let query = Tour.find(JSON.parse(queryStr));
@@ -42,7 +42,7 @@ exports.getALLTours = async (req, res) => {
     ///////3. FIELD LIMITING
     //127.0.0.1:3000/api/v1/tours?fields=name,duration,difficulty,price
     if (req.query.fields) {
-      console.log(req.query.fields);
+      // console.log(req.query.fields);
       const fields = req.query.fields.split(",").join(" ");
       query = query.select(fields);
     } else {

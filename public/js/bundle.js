@@ -12022,19 +12022,18 @@ var login = exports.login = /*#__PURE__*/function () {
       while (1) switch (_context.prev = _context.next) {
         case 0:
           _context.prev = 0;
-          console.log(email, password);
-          _context.next = 4;
+          _context.next = 3;
           return (0, _axios.default)({
             method: 'POST',
-            url: 'http://127.0.0.1:3000/api/v1/users/login',
+            url: '/api/v1/users/login',
             data: {
               email: email,
               password: password
             }
           });
-        case 4:
+        case 3:
           res = _context.sent;
-          console.log(res.data.status);
+          // console.log(res.data.status);
           if (res.data.status === 'success') {
             (0, _alert.showAlert)('success', 'Logged in successfully');
             window.setTimeout(function () {
@@ -12042,17 +12041,17 @@ var login = exports.login = /*#__PURE__*/function () {
             }, 100);
           }
           //this will redirect to the home page after 1.5 seconds
-          _context.next = 12;
+          _context.next = 10;
           break;
-        case 9:
-          _context.prev = 9;
+        case 7:
+          _context.prev = 7;
           _context.t0 = _context["catch"](0);
           (0, _alert.showAlert)('error', _context.t0.response.data.message);
-        case 12:
+        case 10:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[0, 9]]);
+    }, _callee, null, [[0, 7]]);
   }));
   return function login(_x, _x2) {
     return _ref.apply(this, arguments);
@@ -12068,21 +12067,21 @@ var logout = exports.logout = /*#__PURE__*/function () {
           _context2.next = 3;
           return (0, _axios.default)({
             method: 'GET',
-            url: 'http://127.0.0.1:3000/api/v1/users/logout'
+            url: '/api/v1/users/logout'
           });
         case 3:
           res = _context2.sent;
           if (res.data.status === 'success') {
             location.reload(true);
           }
-          _context2.next = 11;
+          _context2.next = 10;
           break;
         case 7:
           _context2.prev = 7;
           _context2.t0 = _context2["catch"](0);
-          console.log(_context2.t0.response);
+          // console.log(error.response);
           (0, _alert.showAlert)('error', 'Error logging out! Try again');
-        case 11:
+        case 10:
         case "end":
           return _context2.stop();
       }
@@ -12113,7 +12112,7 @@ var updateSettings = exports.updateSettings = /*#__PURE__*/function () {
       while (1) switch (_context.prev = _context.next) {
         case 0:
           _context.prev = 0;
-          url = type === 'password' ? 'http://127.0.0.1:3000/api/v1/users/updateMyPassword' : 'http://127.0.0.1:3000/api/v1/users/updateMe';
+          url = type === 'password' ? '/api/v1/users/updateMyPassword' : '/api/v1/users/updateMe';
           _context.next = 4;
           return (0, _axios.default)({
             method: 'PATCH',
@@ -12122,25 +12121,25 @@ var updateSettings = exports.updateSettings = /*#__PURE__*/function () {
           });
         case 4:
           res = _context.sent;
-          console.log(res.data.status);
+          // console.log(res.data.status);
           if (res.data.status === 'success') {
             (0, _alert.showAlert)('success', "".concat(type.toUpperCase(), " updated successfully"));
             window.setTimeout(function () {
               location.assign('/me');
             }, 1000);
           }
-          _context.next = 13;
+          _context.next = 11;
           break;
-        case 9:
-          _context.prev = 9;
+        case 8:
+          _context.prev = 8;
           _context.t0 = _context["catch"](0);
-          console.log(_context.t0.response);
+          // console.log(error.response);
           (0, _alert.showAlert)('error', _context.t0.response.data.message);
-        case 13:
+        case 11:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[0, 9]]);
+    }, _callee, null, [[0, 8]]);
   }));
   return function updateSettings(_x, _x2) {
     return _ref.apply(this, arguments);
@@ -12169,27 +12168,26 @@ var bookTour = exports.bookTour = /*#__PURE__*/function () {
         case 0:
           _context.prev = 0;
           _context.next = 3;
-          return (0, _axios.default)("http://127.0.0.1:3000/api/v1/bookings/checkout-session/".concat(tourId));
+          return (0, _axios.default)("/api/v1/bookings/checkout-session/".concat(tourId));
         case 3:
           session = _context.sent;
-          console.log(session.data);
-          _context.next = 7;
+          _context.next = 6;
           return stripe.redirectToCheckout({
             sessionId: session.data.session.id
           });
-        case 7:
-          _context.next = 13;
+        case 6:
+          _context.next = 11;
           break;
-        case 9:
-          _context.prev = 9;
+        case 8:
+          _context.prev = 8;
           _context.t0 = _context["catch"](0);
-          console.log(_context.t0);
+          // console.log(error);
           (0, _alert.showAlert)('error', _context.t0);
-        case 13:
+        case 11:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[0, 9]]);
+    }, _callee, null, [[0, 8]]);
   }));
   return function bookTour(_x) {
     return _ref.apply(this, arguments);
@@ -12367,7 +12365,7 @@ if (userDataForm) {
     form.append('name', document.querySelector('#name').value);
     form.append('email', document.querySelector('#email').value);
     form.append('photo', document.querySelector('#photo').files[0]);
-    console.log(form);
+    // console.log(form);
     (0, _updateSettings.updateSettings)(form, 'data');
   });
 }
@@ -12437,7 +12435,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56425" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62696" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

@@ -33,7 +33,7 @@ exports.updateOne = (Model) => {
 
 exports.createOne = (Model) => {
   return catchAsync(async (req, res, next) => {
-    console.log(req.body.description);
+    // console.log(req.body.description);
     const newDoc = await Model.create(req.body);
     res.status(201).json({
       status: 'success',

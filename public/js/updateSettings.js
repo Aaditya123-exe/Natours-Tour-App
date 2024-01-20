@@ -5,14 +5,14 @@ export const updateSettings = async (data, type) => {
   try {
     const url =
       type === 'password'
-        ? 'http://127.0.0.1:3000/api/v1/users/updateMyPassword'
-        : 'http://127.0.0.1:3000/api/v1/users/updateMe';
+        ? '/api/v1/users/updateMyPassword'
+        : '/api/v1/users/updateMe';
     const res = await axios({
       method: 'PATCH',
       url,
       data: data,
     });
-    console.log(res.data.status);
+    // console.log(res.data.status);
     if (res.data.status === 'success') {
       showAlert('success', `${type.toUpperCase()} updated successfully`);
       window.setTimeout(() => {
@@ -20,7 +20,7 @@ export const updateSettings = async (data, type) => {
       }, 1000);
     }
   } catch (error) {
-    console.log(error.response);
+    // console.log(error.response);
     showAlert('error', error.response.data.message);
   }
 };

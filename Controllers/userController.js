@@ -63,7 +63,7 @@ exports.getMe = (req, res, next) => {
 };
 
 exports.updateMe = catchAsync(async (req, res, next) => {
-  console.log(req.file); // this will give the file details
+  // console.log(req.file); // this will give the file details
 
   //1)create error if used posts password data
   if (req.body.password || req.body.passwordConfirm) {
